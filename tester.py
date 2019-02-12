@@ -5,14 +5,14 @@ application = Flask(__name__)
 def hello():
     return "<h1>Hello World!</h1> <p> BIG BOY </p>"
 
-@app.route('/results/<int:indexId>',methods=["GET"])
+@application.route('/results/<int:indexId>',methods=["GET"])
 def get_id(indexId):
    studentId = [student for student in students if student['id'] == indexId]
    if len(studentId) == 0:
       abort(404)
    return jsonify({'Student':studentId[0]})
 
-@app.route('/results',methods=['POST'])
+@application.route('/results',methods=['POST'])
 def add_results() : 
    if not request.json or not 'name' in request.json:    
       abort(400)
@@ -28,7 +28,7 @@ def add_results() :
    students.append(student)
    return jsonify({'students':student}), 201
 
-@app.route('/results/<int:indexId>', methods=['PUT', 'DELETE', 'GET', 'POST'])
+@application.route('/results/<int:indexId>', methods=['PUT', 'DELETE', 'GET', 'POST'])
 def update_results(indexId):
   if request.method == 'PUT':
     studentId = [student for student in students if student['id'] == indexId]
