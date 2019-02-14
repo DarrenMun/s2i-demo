@@ -1,5 +1,6 @@
+jsonify
 gunicorn
 Flask
 SQLAlchemy
-marshmallow
-jsonify
+flask_wtf
+flask_sqlalchemy
